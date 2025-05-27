@@ -1,0 +1,163 @@
+
+h1 {
+  padding: 15px;
+  text-align: center;
+  background-color: #2dacff;
+  font-family: "DM Serif Text", serif;
+  letter-spacing: 0.25em;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 50px;
+  color: black;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+form {
+  display: flex;
+  gap: 10px;
+}
+
+input[type="text"], input[type="datetime-local"] {
+  padding: 15px 10px;
+  outline: none;
+  width: 300px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn-add {
+  padding: 10px 20px;
+  border: none;
+  color: white;
+  background-color: #2dacff;
+  font-family: fantasy;
+  font-size: 1.4rem;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-add:hover {
+  background-color: #1c8cdc;
+}
+
+
+ul {
+  padding: 0;
+  width: 80%;
+  margin: 0 auto;
+}
+
+li {
+  list-style: none;
+  background-color: lightgray;
+  border-radius: 10px;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; 
+  padding: 15px;
+  gap: 10px; 
+  word-wrap: break-word;
+}
+
+li .content {
+  font-size: 16px;
+  color: black;
+  flex: 2; /
+}
+
+li .date-time {
+  font-size: 14px;
+  color: gray;
+  text-align: center;
+  flex: 1; 
+  white-space: nowrap;
+}
+
+li .actions {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  flex: 1; /
+}
+
+.btn-editar,
+.btn-eliminar,
+.btn-completar {
+  padding: 10px 15px; 
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: center;
+  flex-grow: 1; 
+}
+
+.btn-editar {
+  background-color: #ffc107;
+}
+
+.btn-editar:hover {
+  background-color: #e0a800;
+}
+
+.btn-completar {
+  background-color: #28a745;
+}
+
+.btn-completar:hover {
+  background-color: #218838;
+}
+
+.btn-eliminar {
+  background-color: #e31746;
+}
+
+.btn-eliminar:hover {
+  background-color: #d33e61;
+}
+
+li.completada {
+  background-color: #d4edda;
+  border: 2px solid #28a745;
+}
+
+li.completada .content {
+  text-decoration: line-through;
+  color: #6c757d;
+}
+
+li.completada .date-time {
+  color: #6c757d;
+}
+
+footer {
+  margin-top: 20px;
+  font-family: "Cabin", sans-serif;
+  color: #666;
+  text-align: center;
+}
+
