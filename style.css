@@ -1,3 +1,134 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login-box {
+  background-color: white;
+  padding: 2rem;
+  border: 2px solid #3498db; /* borde azul */
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgb(50, 46, 46); /* sombra opcional */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  
+}
+
+
+.login-image1 {
+  position: absolute;
+  top: -60px; /* más arriba del recuadro */
+  left: -60px; /* más a la izquierda del borde */
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+ 
+  z-index: 2;
+
+}
+
+.login-image2 {
+  position: absolute;
+  top: -30px; /* más arriba del recuadro */
+  left: 350px; /* más a la izquierda del borde */
+  width: 95px;
+  height: 110px;
+  border-radius: 10%;
+  transform: rotate(5deg);
+  z-index: 2;
+
+}
+
+
+.login-image3 {
+  position: absolute;
+  top: 53%; /* más arriba del recuadro */
+  left: -80px; /* más a la izquierda del borde */
+  width: 110px;
+  height: 100px;
+  border-radius: 10%;
+  transform: rotate(-5deg);
+  z-index: 2;
+
+}
+
+
+.login-image4 {
+  position: absolute;
+  top: 75%; /* más arriba del recuadro */
+  left: 89%; /* más a la izquierda del borde */
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+ 
+  z-index: 2;
+
+}
+
+
+.login-container{
+  position: relative; /* necesario para posicionar hijos con absolute */
+  height: 100vh;
+  background: linear-gradient(153deg, #3498db 50%, #ffffff 50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+.login-container input {
+  margin: 0.5rem 0;
+  padding: 0.7rem;
+  width: 220px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  text-align: center
+}
+
+.login-container h2 {
+  color: #000000;
+  margin-bottom: 1rem;
+}
+
+.login-container button {
+  margin-top: 2rem;
+  padding: 1rem 1rem;
+  background-color: #3498db;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login-error {
+  color: red;
+  margin-top: 1rem;
+  display: none;
+}
+
+.final-line-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 8%;
+  width: 91%;
+  border: none;
+  border-top: 2px solid #000; /* Línea negra */
+  z-index: 999; /* Asegura que esté sobre otros elementos */
+  bottom: 25px; /* para que no se superponga al footer */
+
+}
+
+
+
+
 
 h1 {
   padding: 15px;
@@ -7,7 +138,7 @@ h1 {
   letter-spacing: 0.25em;
   font-weight: bold;
   font-size: 20px;
-  border-radius: 50px;
+  border-radius: 10px;
   color: black;
   margin-top: 40px;
   margin-left: auto;
@@ -35,29 +166,17 @@ form {
   gap: 10px;
 }
 
-input[type="text"], input[type="datetime-local"] {
+input[type="text"], input[type="password"] {
   padding: 15px 10px;
   outline: none;
   width: 300px;
-  border: 2px solid #ccc;
+  border: 1px solid #000000;
   border-radius: 5px;
 }
 
 .btn-add {
-  padding: 10px 20px;
-  border: none;
-  color: white;
-  background-color: #2dacff;
-  font-family: fantasy;
-  font-size: 1.4rem;
-  outline: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.btn-add:hover {
-  background-color: #1c8cdc;
+  background-color: #82CAF7;
+  padding: 10px;
 }
 
 
@@ -159,5 +278,9 @@ footer {
   font-family: "Cabin", sans-serif;
   color: #666;
   text-align: center;
+}
+
+footer {
+  display: none;
 }
 

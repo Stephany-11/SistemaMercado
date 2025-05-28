@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const contraseñaValida = "1234";
 
       if (usuario === usuarioValido && contraseña === contraseñaValida) {
-        document.getElementById("login").style.display = "none";
+        document.querySelector(".login-container").style.display = "none";
+
         document.getElementById("app").style.display = "block";
       } else {
         document.getElementById("login-error").style.display = "block";

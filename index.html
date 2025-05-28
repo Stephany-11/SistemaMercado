@@ -1,54 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Mercado</title>
-    <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lista de Mercado</title>
+  <link rel="stylesheet" href="./style.css" />
 </head>
 
-<div class="login-container" id="login">
-  <h2>Iniciar Sesión</h2>
-  <input type="text" id="username" placeholder="Usuario" required />
-  <input type="password" id="password" placeholder="Contraseña" required />
-    <button id="btn-login">Ingresar</button>
-  <p id="login-error" style="color: red; display: none;">Usuario o contraseña incorrectos</p>
-</div>
-
-<div class="container" id="app" style="display: none;">
-
 <body>
-    <div class="container">
-        <h1>Lista de Mercado</h1>
-        <div class="search">
-    <form id="form-tarea">
-        <input type="text" placeholder="Agregar Producto" required>
-        <input type="number" id="numer-input" placeholder="$ 0,0" required>
-        <button class="btn-add" type="submit">+</button>
-    </form>
-</div>
+  <img src="IMG/logo sis.png" alt="Avatar2" class="login-image4" />
 
-        <div class="li-container">
-            <ul>
-                <!-- Las tareas se agregarán aquí  -->
-            </ul>
-        </div>
-        <div class="empty">
-            <p>No tienes productos en la lista.</p>
+  <div class="login-container" id="login">
+    <div class="login-box">
+      <img src="IMG/MUJER LOGIN.svg" alt="Avatar" class="login-image1" />
+      <img src="IMG/paper1.png" alt="Avatar2" class="login-image2" />
+      <img src="IMG/paper2.png" alt="Avatar2" class="login-image3" />
+      <h2>Iniciar Sesión</h2>
+      <input type="text" id="username" placeholder="Usuario" />
+      <input type="password" id="password" placeholder="Contraseña" />
+      <button id="btn-login">Ingresar</button>  
+      <div id="login-error" class="login-error" style="display: none;">
+            Usuario o contraseña incorrectos
         </div>
 
-        <div class="total-container">
-         <h3>Total: <span id="total-cost">$0.00</span></h3>
-            </div>
-            
     </div>
+  </div>
+ 
+  <div class="container" id="app" style="display: none;">
+    <h1>Lista de Mercado</h1>
+    <div class="search">
+      <form id="form-tarea">
+        <input type="text" placeholder="Agregar Producto" required />
+        <input type="number" id="numer-input" placeholder="$ 0,0" required />
+        <button class="btn-add" type="submit">Agregar</button>
+      </form>
     </div>
-    <footer>
-        <center>Desarrollado por Jhonatan, Carol y Alejandro</center>
-    </footer>
-    <script src="./main.js"></script>
+
+    <div class="li-container">
+      <ul>
+        <!-- Las tareas se agregarán aquí -->
+      </ul>
+    </div>
+    <div class="empty">
+      <p>No tienes productos en la lista.</p>
+    </div>
+
+    <div class="total-container">
+      <h3>Total: <span id="total-cost">$0.00</span></h3>
+    </div>
+  </div>
+  <hr class="final-line-fixed">
+
+
+  <footer>
+    <center>Desarrollado por Jhonatan Rojas, Carol Acosta y Alejandro Bonilla</center>
+  </footer>
+
+  <script src="./main.js"></script>
 </body>
-
 </html>
