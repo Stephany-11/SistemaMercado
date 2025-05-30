@@ -1,140 +1,157 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const login = document.getElementById("login");
+  const app = document.getElementById("app");
   const btnLogin = document.getElementById("btn-login");
+  const usernameInput = document.getElementById("username");
+  const passwordInput = document.getElementById("password");
+  const loginError = document.getElementById("login-error");
 
-  if (btnLogin) {
-    btnLogin.addEventListener("click", () => {
-      const usuario = document.getElementById("username").value;
-      const contraseña = document.getElementById("password").value;
+  const formTarea = document.getElementById("form-tarea");
+  const inputNombre = formTarea.querySelector("input[type='text']");
+  const inputPrecio = formTarea.querySelector("input[type='number']");
+  const ul = document.querySelector("ul");
+  const emptyMessage = document.querySelector(".empty");
+  const totalCostSpan = document.getElementById("total-cost");
 
-      const usuarioValido = "admin";
-      const contraseñaValida = "1234";
-
-      if (usuario === usuarioValido && contraseña === contraseñaValida) {
-        document.querySelector(".login-container").style.display = "none";
-
-        document.getElementById("app").style.display = "block";
-      } else {
-        document.getElementById("login-error").style.display = "block";
-      }
-    });
-  }
-});
-
-
-
-// Selección de elementos del DOM
-const entradaTexto = document.querySelector("input[type='text']");
-const entradaNumero = document.querySelector("#numer-input");
-const botonAgregar = document.querySelector(".btn-add");
-const listaTareas = document.querySelector("ul");
-const mensajeVacio = document.querySelector(".empty");
-const totalCostoElemento = document.getElementById("total-cost");
-
-let tareaEnEdicion = null;
-
-// Evento para agregar o editar tareas
-botonAgregar.addEventListener("click", (e) => {
-  e.preventDefault();
-
-  const texto = entradaTexto.value.trim();
-  const costo = entradaNumero.value.trim();
-
-  if (texto !== "" && costo !== "") {
-    if (tareaEnEdicion) {
-      tareaEnEdicion.querySelector(".texto-tarea").textContent = texto;
-      tareaEnEdicion.querySelector(".costo-tarea").textContent = `$${parseFloat(costo).toFixed(2)}`;
-      tareaEnEdicion = null;
-    } else {
-      const tarea = document.createElement("li");
-
-      const parrafoTexto = document.createElement("p");
-      parrafoTexto.textContent = texto;
-      parrafoTexto.className = "texto-tarea";
-
-      const parrafoCosto = document.createElement("p");
-      parrafoCosto.textContent = `$${parseFloat(costo).toFixed(2)}`;
-      parrafoCosto.className = "costo-tarea";
-
-      tarea.appendChild(parrafoTexto);
-      tarea.appendChild(parrafoCosto);
-      tarea.appendChild(agregarBotonEliminar());
-      tarea.appendChild(agregarBotonEditar());
-      tarea.appendChild(agregarBotonCompletar());
-
-      listaTareas.appendChild(tarea);
-      mensajeVacio.style.display = "none";
-    }
-
-    entradaTexto.value = "";
-    entradaNumero.value = "";
-    actualizarTotal();
-  }
-});
-
-// Crear botón eliminar
-function agregarBotonEliminar() {
-  const botonEliminar = document.createElement("button");
-  botonEliminar.textContent = "X";
-  botonEliminar.className = "btn-eliminar";
-
-  botonEliminar.addEventListener("click", (e) => {
-    const tarea = e.target.parentElement;
-    listaTareas.removeChild(tarea);
-
-    if (listaTareas.querySelectorAll("li").length === 0) {
-      mensajeVacio.style.display = "block";
-    }
-
-    actualizarTotal();
-  });
-
-  return botonEliminar;
-}
-
-// Crear botón editar
-function agregarBotonEditar() {
-  const botonEditar = document.createElement("button");
-  botonEditar.textContent = "Editar";
-  botonEditar.className = "btn-editar";
-
-  botonEditar.addEventListener("click", (e) => {
-    const tarea = e.target.parentElement;
-
-    entradaTexto.value = tarea.querySelector(".texto-tarea").textContent;
-    const textoCosto = tarea.querySelector(".costo-tarea").textContent.replace("$", "");
-    entradaNumero.value = textoCosto;
-
-    tareaEnEdicion = tarea;
-  });
-
-  return botonEditar;
-}
-
-// Crear botón completar
-function agregarBotonCompletar() {
-  const botonCompletar = document.createElement("button");
-  botonCompletar.textContent = "Comprado";
-  botonCompletar.className = "btn-completar";
-
-  botonCompletar.addEventListener("click", (e) => {
-    const tarea = e.target.parentElement;
-    tarea.classList.toggle("completada");
-  });
-
-  return botonCompletar;
-}
-
-// Calcular total acumulado
-function actualizarTotal() {
-  const costos = document.querySelectorAll(".costo-tarea");
   let total = 0;
+  let productoEditando = null; // Guarda el <li> que estamos editando
 
-  costos.forEach(costo => {
-    const valor = parseFloat(costo.textContent.replace("$", ""));
-    if (!isNaN(valor)) {
-      total += valor;
+  // Manejar inicio de sesión
+  btnLogin.addEventListener("click", () => {
+    const usuario = usernameInput.value;
+    const contraseña = passwordInput.value;
+
+    if (usuario === "admin" && contraseña === "1234") {
+      login.style.display = "none";
+      app.style.display = "flex";
+    } else {
+      loginError.style.display = "block";
     }
   });
 
-  totalCostoElemento.textContent = `$${total.toFixed(2)}`;
-}
+  // Manejar el envío del formulario (agregar o editar)
+  formTarea.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const nombre = inputNombre.value.trim();
+    const precioTexto = inputPrecio.value.replace(",", ".");
+    const precio = parseFloat(precioTexto);
+
+    if (!nombre || isNaN(precio)) {
+      alert("Por favor, ingresa un producto y un precio válido.");
+      return;
+    }
+
+    if (productoEditando) {
+      // Estamos editando un producto existente
+      const precioAnteriorTexto = productoEditando.querySelector(".price").textContent;
+      const precioAnterior = parseFloat(precioAnteriorTexto.replace(/[^0-9.-]/g, ""));
+
+      // Actualizar nombre y precio
+      productoEditando.querySelector(".content").textContent = nombre;
+      productoEditando.querySelector(".price").textContent = `$${precio.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+
+      // Actualizar el total
+      const diferencia = precio - precioAnterior;
+      total += diferencia;
+      totalCostSpan.textContent = `$${total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+
+      // Limpiar variable de edición
+      productoEditando = null;
+
+      // Cambiar texto del botón a su estado original
+      formTarea.querySelector("button[type='submit']").textContent = "Agregar";
+
+    } else {
+      // Agregar nuevo producto
+      agregarProducto(nombre, precio);
+    }
+
+    // Limpiar campos
+    inputNombre.value = "";
+    inputPrecio.value = "0,0";
+  });
+
+  function agregarProducto(nombre, precio) {
+    const li = document.createElement("li");
+    li.classList.add("item"); // Clase opcional
+
+    li.innerHTML = `
+      <div class="content">${nombre}</div>
+      <div class="price">$${precio.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</div>
+      <div class="actions">
+        <button class="btn-editar" title="Editar"><img src="IMG/editar.png" alt="Editar"></button>
+        <button class="btn-completar" title="Completado"><img src="IMG/completar.png" alt="Completar"></button>
+        <button class="btn-eliminar-img" title="Eliminar"><img src="IMG/eliminar.png" alt="Eliminar"></button>
+      </div>
+    `;
+
+    ul.appendChild(li);
+    actualizarVistaVacia();
+    actualizarTotal(precio);
+  }
+
+  function actualizarVistaVacia() {
+    emptyMessage.style.display = ul.children.length === 0 ? "block" : "none";
+  }
+
+  function actualizarTotal(precio) {
+    total += precio;
+    totalCostSpan.textContent = `$${total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+  }
+
+  // Editar producto (rellenar formulario)
+  ul.addEventListener("click", (e) => {
+    if (
+      e.target.closest(".btn-editar") ||
+      e.target.closest(".btn-editar img")
+    ) {
+      const li = e.target.closest("li");
+      const nombre = li.querySelector(".content").textContent;
+      const precioTexto = li.querySelector(".price").textContent;
+      const precio = parseFloat(precioTexto.replace(/[^0-9.-]/g, ""));
+
+      // Rellenamos los campos del formulario
+      inputNombre.value = nombre;
+      inputPrecio.value = precio.toFixed(2);
+
+      // Guardamos la <li> que estamos editando
+      productoEditando = li;
+
+      // Cambiar texto del botón para saber que es edición
+      formTarea.querySelector("button[type='submit']").textContent = "Actualizar";
+
+      // Scroll suave hacia arriba
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+
+  // Eliminar producto
+  ul.addEventListener("click", (e) => {
+    if (
+      e.target.closest(".btn-eliminar-img") ||
+      e.target.closest(".btn-eliminar-img img")
+    ) {
+      const li = e.target.closest("li");
+      const precioTexto = li.querySelector(".price").textContent;
+      const precio = parseFloat(precioTexto.replace(/[^0-9.-]/g, ""));
+
+      total -= precio;
+      totalCostSpan.textContent = `$${total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+
+      li.remove();
+      actualizarVistaVacia();
+    }
+  });
+
+  // Completar producto
+  ul.addEventListener("click", (e) => {
+    if (
+      e.target.closest(".btn-completar") ||
+      e.target.closest(".btn-completar img")
+    ) {
+      const li = e.target.closest("li");
+      li.classList.toggle("completada");
+    }
+  });
+});

@@ -5,30 +5,41 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lista de Mercado</title>
+
+  <!-- Estilos -->
   <link rel="stylesheet" href="./style.css" />
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"  />
+  <link rel="preconnect" href="https://fonts.gstatic.com"  crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <img src="IMG/logo sis.png" alt="Avatar2" class="login-image4" />
+  <!-- Imagen fija en login -->
+  <img src="IMG/logo sis.png" alt="Logo App" class="login-image4" />
 
+  <!-- Contenedor de Login -->
   <div class="login-container" id="login">
     <div class="login-box">
       <img src="IMG/MUJER LOGIN.svg" alt="Avatar" class="login-image1" />
-      <img src="IMG/paper1.png" alt="Avatar2" class="login-image2" />
-      <img src="IMG/paper2.png" alt="Avatar2" class="login-image3" />
+      <img src="IMG/paper1.png" alt="Papel decorativo" class="login-image2" />
+      <img src="IMG/paper2.png" alt="Papel decorativo" class="login-image3" />
       <h2>Iniciar Sesión</h2>
       <input type="text" id="username" placeholder="Usuario" />
       <input type="password" id="password" placeholder="Contraseña" />
-      <button id="btn-login">Ingresar</button>  
+      <button id="btn-login">Ingresar</button>
       <div id="login-error" class="login-error" style="display: none;">
-            Usuario o contraseña incorrectos
-        </div>
-
+        Usuario o contraseña incorrectos
+      </div>
     </div>
   </div>
- 
+
+  <!-- Contenedor principal de la aplicación -->
   <div class="container" id="app" style="display: none;">
     <h1>Lista de Mercado</h1>
+
+    <!-- Formulario para agregar productos -->
     <div class="search">
       <form id="form-tarea">
         <input type="text" placeholder="Agregar Producto" required />
@@ -37,26 +48,33 @@
       </form>
     </div>
 
+    <!-- Lista de productos -->
     <div class="li-container">
       <ul>
-        <!-- Las tareas se agregarán aquí -->
+        <!-- Los <li> se insertan aquí dinámicamente desde JS -->
       </ul>
     </div>
+
+    <!-- Mensaje vacío -->
     <div class="empty">
       <p>No tienes productos en la lista.</p>
     </div>
 
+    <!-- Total -->
     <div class="total-container">
-      <h3>Total: <span id="total-cost">$0.00</span></h3>
+    <span class="total-label">Total:</span>
+    <span class="total-value">$0.00</span>
     </div>
-  </div>
-  <hr class="final-line-fixed">
 
+  <!-- Línea final fija -->
+  <hr class="final-line-fixed" />
 
+  <!-- Footer oculto -->
   <footer>
     <center>Desarrollado por Jhonatan Rojas, Carol Acosta y Alejandro Bonilla</center>
   </footer>
 
+  <!-- Script principal -->
   <script src="./main.js"></script>
 </body>
 </html>
