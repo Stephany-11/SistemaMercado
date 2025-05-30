@@ -12,7 +12,9 @@
   <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com"  />
   <link rel="preconnect" href="https://fonts.gstatic.com"  crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -37,13 +39,14 @@
 
   <!-- Contenedor principal de la aplicación -->
   <div class="container" id="app" style="display: none;">
+    <div class="mercado-box">
     <h1>Lista de Mercado</h1>
 
     <!-- Formulario para agregar productos -->
     <div class="search">
       <form id="form-tarea">
-        <input type="text" placeholder="Agregar Producto" required />
-        <input type="number" id="numer-input" placeholder="$ 0,0" required />
+        <input type="text" id="numer-input1" placeholder="Agregar Producto" required />
+        <input type="number" id="numer-input2" placeholder="$ 0,0" required />
         <button class="btn-add" type="submit">Agregar</button>
       </form>
     </div>
@@ -62,8 +65,9 @@
 
     <!-- Total -->
     <div class="total-container">
-    <span class="total-label">Total:</span>
-    <span class="total-value">$0.00</span>
+    <span class="total-label">Total Gasto:</span>
+    <span class="total-value" id="total-cost">$0.00</span>
+    </div>
     </div>
 
   <!-- Línea final fija -->
